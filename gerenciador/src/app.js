@@ -2,24 +2,32 @@ const app = require('express')();
 const consign = require('consign');
 const knex = require('knex');
 const knexfile = require('../knexfile');
-// const knexlogger = require('knex-logger');
+
 
 //TODO Criar chaveamento dinâmico
 app.db = knex(knexfile.test);
 
-// app.use(knexlogger(app.db));
-
 consign({ cwd: 'src', verbose: false })
-    .include('./config/middlewares.js')
+    .include('./config/passport.js')
+    .then('./config/middlewares.js')
     .then('./services')
     .then('./routes')
-    .then('./config/routes.js')
+    .then('./config/router.js')
     .into(app)
 
 app.get('/', (req, res) => {
     res.status(200).send('Sistema de Gerenciamento de contas')
 })
 
+// Middleware gerenciador de Erros
+app.use((err, req, res, next)=>{
+    const { name, message, stack } = err;
+    
+    if(name === 'ValidationError') res.status(err.status).json({error: err.message})
+    else res.status(500).json({name, message, stack})
+    
+    next(err);
+})
 /*
 app.db
 .on('query', (query) => {
