@@ -3,7 +3,8 @@ const passportjwt = require('passport-jwt');
 
 const { Strategy, ExtractJwt } = passportjwt;
 
-// TODO Resolver esta duplicação de variável. Colocar em aqrquivo.env. Atualmente está em? routes/auth.js
+//TODO Resolver esta dupli de variável
+// FIXME Resolver esta duplicação de variável. Colocar em aqrquivo.env. Atualmente está em? routes/auth.js
 const SECRET = 'sdasjhdjew43987ddhskdjs';
 
 module.exports = (app) => {
