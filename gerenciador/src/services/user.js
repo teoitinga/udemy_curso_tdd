@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt-nodejs');
 const ValidationError = require('../exceptions/ValidationError');
-
+ 
 module.exports = (app) => {
 
     FIELDS = ['id', 'name', 'email']

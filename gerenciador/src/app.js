@@ -22,7 +22,10 @@ app.get('/', (req, res) => {
 // Middleware gerenciador de Erros
 app.use((err, req, res, next)=>{
     const { name, message, stack } = err;
-    
+    // console.log('######################################################')
+    // console.log(name)
+    // console.log(message)
+    // console.log(stack)
     if(name === 'ValidationError') res.status(err.status).json({error: err.message})
     else res.status(500).json({name, message, stack})
     
