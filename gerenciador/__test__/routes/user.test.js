@@ -38,7 +38,8 @@ test('Deve inserir usuário com sucesso', async () => {
     const user = { name: 'Jonh Doe', email: mail, password: '123456' }
 
     const result = await request(app)
-        .post(MAIN_ROUTE).send(user)
+        .post(MAIN_ROUTE)
+        .send(user)
         .set('authorization', `bearer ${u.token}`);
 
     expect(result.status).toBe(201);

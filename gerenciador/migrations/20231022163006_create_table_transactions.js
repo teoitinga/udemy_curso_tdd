@@ -3,7 +3,7 @@ exports.up = function (knex, Promise) {
         t.increments('id').primary;
         t.string('description').notNull();
         t.enu('type', ['I', 'O']).notNull();
-        t.date('date').notNull();
+        t.dateTime('date').notNull();
         t.decimal('ammount', 15, 2).notNull();
         t.boolean('status').notNull().default(false);
         t.integer('acc_id').unsigned();
